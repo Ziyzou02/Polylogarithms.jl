@@ -12,7 +12,7 @@ import SpecialFunctions
 
 export polylog, bernoulli, euler, harmonic, stieltjes, dirichlet_beta
 export Diagnostics
-export parse
+export parse_func
 
 # @compat ComplexOrReal{T} = Union{T,Complex{T}}
 # s::ComplexOrReal{Float64}
