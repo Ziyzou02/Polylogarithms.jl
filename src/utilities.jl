@@ -1,4 +1,4 @@
-import Base: parse
+import parse
 
 """
  Parse complex numbers.
@@ -15,7 +15,7 @@ julia> parse( Complex{Float64}, "1.2 - 3.1*I")
 1.2 + 3.1im
 ```
 """
-function parse(::Type{Complex{T}}, s::AbstractString) where {T<:Real}
+function parse_func(::Type{Complex{T}}, s::AbstractString) where {T<:Real}
     s = replace(s, "*^" => "e") # Mathematica seems to export in forms like "3.061616997868383*^-18"
     # real_r = r"([+-]?\d*(\.\d*)?(e[+-]?\d+)?)([\s+-]|$)"
     real_r = r"([+-]?\d*(\.\d*)?(e[+-]?\d+)?)([^*iI])"
@@ -50,7 +50,7 @@ julia> parse( Rational{Int64}, "1 / 2")
 1//2
 ```
 """
-function parse(::Type{Rational{T}}, x::AbstractString) where {T<:Integer}
+function parse_func(::Type{Rational{T}}, x::AbstractString) where {T<:Integer}
     list = split(x, '/', keepempty=false)
     if length(list) == 1
         return parse(T, list[1]) // 1
